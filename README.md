@@ -9,7 +9,7 @@ Yet Another Create Read Update and Delete project.
 
 This package is for development and testing purposes.
 
-We can use this to create a database and some tables and then fill them with fake values.
+We can use this to create a test database and some tables and then fill them with fake values.
 
 ## Table of Contents
 
@@ -23,6 +23,10 @@ We can use this to create a database and some tables and then fill them with fak
 * NPM (v6 or higher)
 * PostgreSQL (v11 or higher)
 * DBeaver (Optional)
+
+#### Localhost
+
+Start the PostgreSQL server and then using `yacrud`.
 
 ## Getting started
 
