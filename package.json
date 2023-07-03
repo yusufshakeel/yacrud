@@ -1,0 +1,52 @@
+{
+  "name": "yacrud",
+  "version": "0.1.0",
+  "description": "Yet Another Create Read Update and Delete project.",
+  "main": "src/index.js",
+  "bin": {
+    "yacrud": "src/index.js"
+  },
+  "scripts": {
+    "test": "jest -c jest.config.json",
+    "precommit": "npm run lint && npm run test",
+    "lint": "npm run lint:src && npm run lint:test",
+    "lint:src": "npx eslint -c .eslintrc.json src",
+    "lint:fix:src": "npx eslint --fix -c .eslintrc.json src",
+    "lint:test": "npx eslint -c .eslintrc.json test",
+    "lint:fix:test": "npx eslint --fix -c .eslintrc.json test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufshakeel/yacrud.git"
+  },
+  "keywords": [
+    "CRUD",
+    "javascript",
+    "nodejs",
+    "database",
+    "postgresql"
+  ],
+  "author": "Yusuf Shakeel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusufshakeel/yacrud/issues"
+  },
+  "homepage": "https://github.com/yusufshakeel/yacrud#readme",
+  "engines": {
+    "node": ">14.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "getfake": "^0.37.0",
+    "knex": "^2.4.2",
+    "pg": "^8.11.1",
+    "uuid": "^9.0.0"
+  }
+}
