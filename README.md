@@ -39,25 +39,20 @@ npm i -g yacrud
 ## Commands
 
 ```shell
-yacrud command [-option=value]
-```
-
-| Command                | Description                            |
-|------------------------|----------------------------------------|
-| yacrud version         | Display version.                       |
-| yacrud create-database | Creates the default database `yacrud`. |
-| yacrud create-tables   | Creates the default tables.            |
-| yacrud fill-tables     | Fill the tables with fake values.      |
-
-```
 Usage: yacrud command [-option=value]
   
   Commands:
   =========================================
   version               Print the version.
+  init                  This will create the default database, tables and fill the tables.
   create-database       Create default database 'yacrud'.
   create-tables         Create default tables.
   fill-tables           Fill the tables with fake values.
+  
+  Initialise:
+  ->  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  Example:
+  ->  yacrud init
   
   Create database:
   ->  yacrud create-database [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
@@ -74,6 +69,16 @@ Usage: yacrud command [-option=value]
   Example:
   ->  yacrud fill-tables
 ```
+
+#### Default values
+| Flag  | Default Value | Note          |
+|-------|---------------|---------------|
+| -d    | yacrud        | Database name |
+| -h    | localhost     | Hostname      |
+| -p    | 5432          | Port          |
+| -U    |               | Username      |
+| -P    |               | Password      |
+
 
 ## License
 

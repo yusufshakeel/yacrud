@@ -10,9 +10,15 @@ const options = () => {
   Commands:
   =========================================
   version               Print the version.
+  init                  This will create the default database, tables and fill the tables.
   create-database       Create default database 'yacrud'.
   create-tables         Create default tables.
   fill-tables           Fill the tables with fake values.
+  
+  Initialise:
+  ->  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  Example:
+  ->  yacrud init
   
   Create database:
   ->  yacrud create-database -h=Host -p=PORT [-U=Username] [-P=Password]
@@ -36,7 +42,12 @@ const cmdOptionsParser = cmdOptions => {
 module.exports = async function commands() {
   const argv = process.argv.slice(2);
   const [command, ...cmdOptions] = argv;
-  if (command === 'version') {
+
+  if (command === 'init') {
+    await createDatabase(cmdOptionsParser(cmdOptions));
+    await createTables(cmdOptionsParser(cmdOptions));
+    await fillTables(cmdOptionsParser(cmdOptions));
+  } else if (command === 'version') {
     console.log(
       `${packageJson.name} - version ${packageJson.version}\n${packageJson.description}\n${packageJson.homepage}`
     );
