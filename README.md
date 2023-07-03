@@ -56,19 +56,19 @@ Usage: yacrud command [-option=value]
   fill-tables           Fill the tables with fake values.
   
   Create database:
-  ->  yacrud create-database -h=Host -p=PORT [-U=Username] [-P=Password]
+  ->  yacrud create-database [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud create-database -h=localhost -p=5432
+  ->  yacrud create-database
   
   Create tables:
-  ->  yacrud create-tables -h=Host -p=PORT [-U=Username] [-P=Password]
+  ->  yacrud create-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud create-tables -h=localhost -p=5432
+  ->  yacrud create-tables
   
   Fill tables:
-  ->  yacrud fill-tables -h=Host -p=PORT [-U=Username] [-P=Password]
+  ->  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud fill-tables -h=localhost -p=5432
+  ->  yacrud fill-tables
 ```
 
 ## License

@@ -1,5 +1,6 @@
 'use strict';
 
+const dbConfig = require('../configs/db-config');
 const knexSetup = require('../setups/knex-setup');
 
 async function terminateAllConnections(knex, databaseConfiguration) {
@@ -27,11 +28,11 @@ async function dropDatabase(knex, databaseConfiguration) {
 
 async function run(cmdOptions) {
   const databaseConfiguration = {
-    host: cmdOptions['-h'],
-    port: cmdOptions['-p'],
-    database: 'yacrud',
-    user: cmdOptions['-U'] ?? '',
-    password: cmdOptions['-P'] ?? ''
+    host: cmdOptions['-h'] ?? dbConfig.host,
+    port: cmdOptions['-p'] ?? dbConfig.port,
+    database: cmdOptions['-d'] ?? dbConfig.database,
+    user: cmdOptions['-U'] ?? dbConfig.user,
+    password: cmdOptions['-P'] ?? dbConfig.password
   };
   const knex = knexSetup({
     client: 'pg',
