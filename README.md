@@ -5,6 +5,12 @@ Yet Another Create Read Update and Delete project.
 [![npm version](https://img.shields.io/badge/npm-0.1.0-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
+## Use case
+
+This package is for development and testing purposes.
+
+We can use this to create a database and some tables and then fill them with fake values.
+
 ## Table of Contents
 
 * [Prerequisite](#prerequisite)
@@ -20,10 +26,10 @@ Yet Another Create Read Update and Delete project.
 
 ## Getting started
 
-Install this package as global dependencies.
+Install this package globally.
 
 ```shell
-npm i -g yusufshakeel
+npm i -g yacrud
 ```
 
 ## Commands
