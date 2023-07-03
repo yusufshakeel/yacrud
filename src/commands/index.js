@@ -16,19 +16,24 @@ const options = () => {
   fill-tables           Fill the tables with fake values.
   
   Initialise:
-  ->  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  ➜  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud init
+  ➜  yacrud init
   
   Create database:
-  ->  yacrud create-database -h=Host -p=PORT [-U=Username] [-P=Password]
+  ➜  yacrud create-database -h=Host -p=PORT [-U=Username] [-P=Password]
   Example:
-  ->  yacrud create-database -h=localhost -p=5432
+  ➜  yacrud create-database
   
   Create tables:
-  ->  yacrud create-tables -h=Host -p=PORT [-U=Username] [-P=Password]
+  ➜  yacrud create-tables -h=Host -p=PORT [-U=Username] [-P=Password]
   Example:
-  ->  yacrud create-tables -h=localhost -p=5432
+  ➜  yacrud create-tables
+  
+  Fill tables:
+  ➜  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  Example:
+  ➜  yacrud fill-tables
   `;
 };
 
