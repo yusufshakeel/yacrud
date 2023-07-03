@@ -20,6 +20,12 @@ Yet Another Create Read Update and Delete project.
 
 ## Getting started
 
+Install this package as global dependencies.
+
+```shell
+npm i -g yusufshakeel
+```
+
 ## Commands
 
 ```shell
@@ -52,6 +58,11 @@ Usage: yacrud command [-option=value]
   ->  yacrud create-tables -h=Host -p=PORT [-U=Username] [-P=Password]
   Example:
   ->  yacrud create-tables -h=localhost -p=5432
+  
+  Fill tables:
+  ->  yacrud fill-tables -h=Host -p=PORT [-U=Username] [-P=Password]
+  Example:
+  ->  yacrud fill-tables -h=localhost -p=5432
 ```
 
 ## License
