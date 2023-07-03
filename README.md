@@ -7,6 +7,10 @@ Yet Another Create Read Update and Delete project.
 
 ## Table of Contents
 
+* [Prerequisite](#prerequisite)
+* [Getting started](#getting-started)
+* [Commands](#commands)
+
 ## Prerequisite
 
 * Node (v14 or higher)
