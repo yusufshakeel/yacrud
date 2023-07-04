@@ -21,7 +21,10 @@ We can use this to create a test database and some tables and then fill them wit
 
 * Node (v14 or higher)
 * NPM (v6 or higher)
-* PostgreSQL (v11 or higher)
+* Database (any of the following)
+  * PostgreSQL (v11 or higher)
+  * MySQL (v7 or higher)
+  * MariaDB (v9 or higher)
 * DBeaver (Optional)
 
 #### Localhost
@@ -55,14 +58,25 @@ fill-tables           Fill the default tables with fake values.
 ```
 
 #### Default values
-| Flag | Default Value | Note            |
-|------|---------------|-----------------|
-| -d   | yacrud        | Database name   |
-| -h   | localhost     | Hostname        |
-| -p   | 5432          | Port            |
-| -U   |               | Username        |
-| -P   |               | Password        |
+| Flag | Default Value | Note          |
+|------|---------------|---------------|
+| -d   | yacrud        | Database name |
+| -h   | localhost     | Hostname      |
+| -p   | 5432          | Port          |
+| -U   |               | Username      |
+| -P   |               | Password      |
+| -C   | pg            | Client name   |
 
+Values for `-C` flag.
+```
+pg          PostgreSQL
+mysql2      MySQL/MariaDB
+```
+
+Example:
+```shell
+yacrud init -C=mysql2 -p=3306 -U=yusufshakeel -P=root1234
+```
 
 ## License
 

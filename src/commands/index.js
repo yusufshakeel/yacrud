@@ -13,10 +13,10 @@ const commandOptionParserHelper = require('../helpers/command-option-parser-help
 async function recreateDbCmd({ databaseConfiguration }) {
   await recreateDatabase(
     knexSetup({
-      client: 'pg',
+      client: databaseConfiguration.client,
       connection: {
-        ...databaseConfiguration,
-        database: 'postgres'
+        ...databaseConfiguration.connection,
+        database: databaseConfiguration.defaultDatabase
       }
     }),
     databaseConfiguration
@@ -26,10 +26,10 @@ async function recreateDbCmd({ databaseConfiguration }) {
 async function dropDbCmd({ databaseConfiguration }) {
   await dropDatabase(
     knexSetup({
-      client: 'pg',
+      client: databaseConfiguration.client,
       connection: {
-        ...databaseConfiguration,
-        database: 'postgres'
+        ...databaseConfiguration.connection,
+        database: databaseConfiguration.defaultDatabase
       }
     }),
     databaseConfiguration
@@ -39,10 +39,10 @@ async function dropDbCmd({ databaseConfiguration }) {
 async function createDbCmd({ databaseConfiguration }) {
   await createDatabase(
     knexSetup({
-      client: 'pg',
+      client: databaseConfiguration.client,
       connection: {
-        ...databaseConfiguration,
-        database: 'postgres'
+        ...databaseConfiguration.connection,
+        database: databaseConfiguration.defaultDatabase
       }
     }),
     databaseConfiguration
@@ -52,9 +52,10 @@ async function createDbCmd({ databaseConfiguration }) {
 async function initCmd(knex, databaseConfiguration) {
   await recreateDbCmd({ databaseConfiguration });
   await createTables(knex);
-  await fillTables(knex);
+  await fillTables(knex, databaseConfiguration);
 }
 
+// eslint-disable-next-line complexity
 module.exports = async function commands() {
   const argv = process.argv.slice(2);
   const [command, ...cmdOptions] = argv;
@@ -67,17 +68,22 @@ module.exports = async function commands() {
 
   const parsedCmdOptions = commandOptionParserHelper(cmdOptions);
 
+  const dbClient = parsedCmdOptions['-C'] ?? dbConfig.client;
   const databaseConfiguration = {
-    host: parsedCmdOptions['-h'] ?? dbConfig.host,
-    port: parsedCmdOptions['-p'] ?? dbConfig.port,
-    database: parsedCmdOptions['-d'] ?? dbConfig.database,
-    user: parsedCmdOptions['-U'] ?? dbConfig.user,
-    password: parsedCmdOptions['-P'] ?? dbConfig.password
+    connection: {
+      host: parsedCmdOptions['-h'] ?? dbConfig.host,
+      port: parsedCmdOptions['-p'] ?? dbConfig.port,
+      database: parsedCmdOptions['-d'] ?? dbConfig.database,
+      user: parsedCmdOptions['-U'] ?? dbConfig.user,
+      password: parsedCmdOptions['-P'] ?? dbConfig.password
+    },
+    client: dbClient,
+    defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres'
   };
   const knex = knexSetup({
-    client: 'pg',
+    client: databaseConfiguration.client,
     connection: {
-      ...databaseConfiguration
+      ...databaseConfiguration.connection
     }
   });
 
@@ -88,7 +94,7 @@ module.exports = async function commands() {
     'recreate-database': ({ databaseConfiguration }) => recreateDbCmd({ databaseConfiguration }),
     'drop-database': ({ databaseConfiguration }) => dropDbCmd({ databaseConfiguration }),
     'create-tables': ({ knex }) => createTables(knex),
-    'fill-tables': ({ knex }) => fillTables(knex)
+    'fill-tables': ({ knex, databaseConfiguration }) => fillTables(knex, databaseConfiguration)
   };
   try {
     const cmdHandler = commandHandlerConfig[command];

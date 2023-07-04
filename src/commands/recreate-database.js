@@ -8,7 +8,7 @@ async function run(knex, databaseConfiguration) {
     await dropDatabase(knex, databaseConfiguration);
     await createDatabase(knex, databaseConfiguration);
   } catch (error) {
-    console.error('CATCH_BLOCK - CREATE-DATABASE - run', error.message);
+    console.error('CATCH_BLOCK - RECREATE-DATABASE - run', error.message);
   }
   await knex.destroy();
 }
