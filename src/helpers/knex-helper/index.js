@@ -16,8 +16,14 @@ async function dropDatabase(knex, databaseConfiguration) {
   await client.dropDatabase();
 }
 
+async function listTables(knex, databaseConfiguration) {
+  const client = Client(knex, databaseConfiguration);
+  await client.listTables();
+}
+
 module.exports = {
   terminateAllConnections,
   createDatabase,
-  dropDatabase
+  dropDatabase,
+  listTables
 };

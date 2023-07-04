@@ -38,4 +38,15 @@ module.exports = function PgClient(knex, databaseConfiguration) {
       console.info(`Database does not exists.`);
     }
   };
+
+  this.listTables = async () => {
+    const isDatabasePresent = await isDbPresent(knex, databaseConfiguration);
+    if (!isDatabasePresent) {
+      console.info(`Database does not exists: ${databaseConfiguration.connection.database}`);
+      return;
+    }
+    const result = await knex.raw(`SELECT tablename FROM pg_tables WHERE schemaname='public'`);
+    const { rows } = result;
+    console.log(rows.map(v => v.tablename));
+  };
 };

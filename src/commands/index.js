@@ -6,6 +6,7 @@ const recreateDatabase = require('./recreate-database');
 const dropDatabase = require('./drop-database');
 const createTables = require('./create-tables');
 const fillTables = require('./fill-tables');
+const listTables = require('./list-tables');
 const options = require('./options');
 const version = require('./version');
 const commandOptionParserHelper = require('../helpers/command-option-parser-helper');
@@ -62,7 +63,8 @@ const commandHandlerConfig = ({ knex, databaseConfiguration }) => ({
   'recreate-database': () => recreateDbCmd({ databaseConfiguration }),
   'drop-database': () => dropDbCmd({ databaseConfiguration }),
   'create-tables': () => createTables(knex),
-  'fill-tables': () => fillTables(knex, databaseConfiguration)
+  'fill-tables': () => fillTables(knex, databaseConfiguration),
+  'list-tables': () => listTables(knex, databaseConfiguration)
 });
 
 const getDbConfig = cmdOptions => {

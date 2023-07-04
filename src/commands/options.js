@@ -17,6 +17,8 @@ const commandOptions = `
   drop-database         Drop the default database 'yacrud'.
   create-tables         Create the default tables.
   fill-tables           Fill the default tables with fake values.
+  list-tables           List all the tables.
+  read                  Read rows from a table.
   
   +------+---------------+---------------+
   | Flag | Default Value | Note          |
@@ -105,6 +107,26 @@ Fill the default tables with fake values inside default database 'yacrud'.
 Pass the -d option if a different database is being used.
 `;
 
+const listTablesCmd = `List tables:
+➜  yacrud list-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+Example:
+➜  yacrud list-tables
+
+Fetch tables from the default database 'yacrud'.
+
+Pass the -d option if a different database is being used.
+`;
+
+const readRowsATableCmd = `Read rows of a table:
+➜  yacrud read [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+Example:
+➜  yacrud read
+
+Fetch rows from a table of the default database 'yacrud'.
+
+Pass the -d option if a different database is being used.
+`;
+
 const commandHelpMap = {
   version: versionCmd,
   init: initCmd,
@@ -112,7 +134,9 @@ const commandHelpMap = {
   ['recreate-database']: recreateDatabaseCmd,
   ['drop-database']: dropDatabaseCmd,
   ['create-tables']: createTablesCmd,
-  ['fill-tables']: fillTablesCmd
+  ['fill-tables']: fillTablesCmd,
+  ['list-tables']: listTablesCmd,
+  ['read']: readRowsATableCmd
 };
 
 module.exports = function options(params = {}) {

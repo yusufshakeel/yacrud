@@ -41,4 +41,17 @@ module.exports = function MySqlClient(knex, databaseConfiguration) {
       console.info(`Database does not exists.`);
     }
   };
+
+  this.listTables = async () => {
+    const isDatabasePresent = await isDbPresent(knex, databaseConfiguration);
+    if (!isDatabasePresent) {
+      console.info(`Database does not exists: ${databaseConfiguration.connection.database}`);
+      return;
+    }
+    const result = await knex.raw(
+      `SELECT table_name FROM information_schema.tables where table_schema='${databaseConfiguration.connection.database}'`
+    );
+    const rows = result?.[0] ?? [];
+    console.log(rows.map(v => v.TABLE_NAME));
+  };
 };
