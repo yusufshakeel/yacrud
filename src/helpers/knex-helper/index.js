@@ -21,9 +21,15 @@ async function listTables(knex, databaseConfiguration) {
   await client.listTables();
 }
 
+async function read(knex, databaseConfiguration) {
+  const client = Client(knex, databaseConfiguration);
+  await client.read(databaseConfiguration.readCondition);
+}
+
 module.exports = {
   terminateAllConnections,
   createDatabase,
   dropDatabase,
-  listTables
+  listTables,
+  read
 };

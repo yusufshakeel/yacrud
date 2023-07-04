@@ -49,4 +49,19 @@ module.exports = function PgClient(knex, databaseConfiguration) {
     const { rows } = result;
     console.log(rows.map(v => v.tablename));
   };
+
+  this.read = async readCondition => {
+    const isDatabasePresent = await isDbPresent(knex, databaseConfiguration);
+    if (!isDatabasePresent) {
+      console.info(`Database does not exists: ${databaseConfiguration.connection.database}`);
+      return;
+    }
+    const { table, filter, limit = 5, offset = 0 } = readCondition;
+    const [columnName, columnValue] = filter ? filter.split(':') : [];
+    const whereClause = columnName && columnValue ? `WHERE "${columnName}"='${columnValue}'` : '';
+    const result = await knex.raw(
+      `SELECT * FROM "${table}" ${whereClause} LIMIT ${limit} OFFSET ${offset}`
+    );
+    console.log(result?.rows ?? []);
+  };
 };

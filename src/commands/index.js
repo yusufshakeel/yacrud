@@ -7,6 +7,7 @@ const dropDatabase = require('./drop-database');
 const createTables = require('./create-tables');
 const fillTables = require('./fill-tables');
 const listTables = require('./list-tables');
+const read = require('./read');
 const options = require('./options');
 const version = require('./version');
 const commandOptionParserHelper = require('../helpers/command-option-parser-helper');
@@ -64,23 +65,34 @@ const commandHandlerConfig = ({ knex, databaseConfiguration }) => ({
   'drop-database': () => dropDbCmd({ databaseConfiguration }),
   'create-tables': () => createTables(knex),
   'fill-tables': () => fillTables(knex, databaseConfiguration),
-  'list-tables': () => listTables(knex, databaseConfiguration)
+  'list-tables': () => listTables(knex, databaseConfiguration),
+  read: () => read(knex, databaseConfiguration)
+});
+
+const getConnectionOptions = parsedCmdOptions => ({
+  host: parsedCmdOptions['-h'] ?? dbConfig.host,
+  port: parsedCmdOptions['-p'] ?? dbConfig.port,
+  database: parsedCmdOptions['-d'] ?? dbConfig.database,
+  user: parsedCmdOptions['-U'] ?? dbConfig.user,
+  password: parsedCmdOptions['-P'] ?? dbConfig.password
+});
+
+const getReadConditionOptions = parsedCmdOptions => ({
+  table: parsedCmdOptions['-table'] ?? 'message',
+  limit: parsedCmdOptions['-limit'] ?? 5,
+  offset: parsedCmdOptions['-offset'] ?? 0,
+  filter: parsedCmdOptions['-filter'] ?? 0
 });
 
 const getDbConfig = cmdOptions => {
   const parsedCmdOptions = commandOptionParserHelper(cmdOptions);
   const dbClient = parsedCmdOptions['-C'] ?? dbConfig.client;
   return {
-    connection: {
-      host: parsedCmdOptions['-h'] ?? dbConfig.host,
-      port: parsedCmdOptions['-p'] ?? dbConfig.port,
-      database: parsedCmdOptions['-d'] ?? dbConfig.database,
-      user: parsedCmdOptions['-U'] ?? dbConfig.user,
-      password: parsedCmdOptions['-P'] ?? dbConfig.password
-    },
+    connection: getConnectionOptions(parsedCmdOptions),
     client: dbConfig.defaultClientMap[dbClient] ?? 'pg',
     defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres',
-    selectedDatabase: dbClient
+    selectedDatabase: dbClient,
+    readCondition: getReadConditionOptions(parsedCmdOptions)
   };
 };
 

@@ -118,11 +118,21 @@ Pass the -d option if a different database is being used.
 `;
 
 const readRowsATableCmd = `Read rows of a table:
-➜  yacrud read [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+➜  yacrud read [-table=tableName] [-filter=columnName:value] [-limit=Number] [-offset=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
-➜  yacrud read
+➜  yacrud read -table=message
 
 Fetch rows from a table of the default database 'yacrud'.
+
+Default:
+table=message
+limit=5
+offset=0
+
+The 'filter' flag will filter based on column name and value.
+
+Example:
+➜  yacrud read -table=message -filter=guid:'28a16df2-07e0-432a-807d-ec58e3791e7d'
 
 Pass the -d option if a different database is being used.
 `;
