@@ -1,7 +1,7 @@
 'use strict';
 const { v4: uuidV4 } = require('uuid');
 const { getfake } = require('getfake');
-const randomDateHelper = require('../helpers/random-date-helper');
+const randomDateHelper = require('../../helpers/random-date-helper');
 
 module.exports = async function fillMessageTable(knex, databaseConfiguration) {
   const tableName = 'message';

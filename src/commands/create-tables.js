@@ -1,8 +1,8 @@
 'use strict';
 
-const createMessageTable = require('../migrations/create-message-table');
-const createCustomerTable = require('../migrations/create-customer-table');
-const createOrderTable = require('../migrations/create-customer-order-table');
+const createMessageTable = require('../migrations/tables/create-message-table');
+const createCustomerTable = require('../migrations/tables/create-customer-table');
+const createOrderTable = require('../migrations/tables/create-customer-order-table');
 
 async function createTables(knex) {
   console.info('Creating tables...');

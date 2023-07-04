@@ -1,7 +1,7 @@
 'use strict';
 
-const fillMessageTable = require('../migrations/fill-message-table');
-const fillCustomerAndCustomerOrderTable = require('../migrations/fill-customer-and-customer-order-tables');
+const fillMessageTable = require('../migrations/data/fill-message-table');
+const fillCustomerAndCustomerOrderTable = require('../migrations/data/fill-customer-and-customer-order-tables');
 
 async function fillTables(knex, databaseConfiguration) {
   console.info('Filling tables...');
