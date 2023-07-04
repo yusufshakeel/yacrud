@@ -56,8 +56,7 @@ async function initCmd(knex, databaseConfiguration) {
 }
 
 // eslint-disable-next-line complexity
-module.exports = async function commands() {
-  const argv = process.argv.slice(2);
+module.exports = async function commands(argv) {
   const [command, ...cmdOptions] = argv;
 
   if (!argv.length || argv[0] === '--help' || argv[1] === '--help') {
