@@ -4,7 +4,7 @@ const fillMessageTable = require('../migrations/fill-message-table');
 const fillCustomerAndCustomerOrderTable = require('../migrations/fill-customer-and-customer-order-tables');
 
 async function fillTables(knex) {
-  console.info('Fill tables...');
+  console.info('Filling tables...');
   await fillMessageTable(knex);
   await fillCustomerAndCustomerOrderTable(knex);
   console.info('Filled tables.');
