@@ -33,7 +33,7 @@ const commandOptions = `
   mysql       MySQL/MariaDB
   
   Example:
-  ➜  yacrud init -C=mysql2 -h=localhost -p=3306 -d=yacrud -U=yusufshakeel -P=root1234
+  ➜  yacrud init -C=mysql -h=localhost -p=3306 -d=yacrud -U=yusufshakeel -P=root1234
 `;
 
 const versionCmd = `Version:
