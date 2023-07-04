@@ -1,100 +1,23 @@
 'use strict';
 
-const dbConfig = require('../configs/db-config');
-const knexSetup = require('../setups/knex-setup');
-
-async function createMessageTable(knex) {
-  const tableName = 'message';
-  const exists = await knex.schema.withSchema('public').hasTable(tableName);
-  if (exists) {
-    console.log(`Table exists. Dropping table: ${tableName}`);
-    await knex.schema.withSchema('public').dropTableIfExists(tableName);
-    console.log(`Dropped table: ${tableName}`);
-  }
-  console.log(`Creating table: ${tableName}`);
-  await knex.schema.withSchema('public').createTable(tableName, table => {
-    table.increments('id');
-    table.uuid('guid').notNullable().unique();
-    table.string('message').notNullable();
-    table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
-    table.timestamp('updatedAt');
-  });
-  console.log(`Created table: ${tableName}`);
-}
-
-async function createCustomerTable(knex) {
-  const tableName = 'customer';
-  const exists = await knex.schema.withSchema('public').hasTable(tableName);
-  if (exists) {
-    console.log(`Table exists. Dropping table: ${tableName}`);
-    await knex.schema.withSchema('public').dropTableIfExists(tableName);
-    console.log(`Dropped table: ${tableName}`);
-  }
-  console.log(`Creating table: ${tableName}`);
-  await knex.schema.withSchema('public').createTable(tableName, table => {
-    table.increments('id');
-    table.uuid('guid').notNullable().unique();
-    table.string('email').notNullable().unique();
-    table.string('password').notNullable();
-    table.string('firstName').notNullable();
-    table.string('lastName');
-    table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
-    table.timestamp('updatedAt');
-  });
-  console.log(`Created table: ${tableName}`);
-}
-
-async function createOrderTable(knex) {
-  const tableName = 'customerOrder';
-  const exists = await knex.schema.withSchema('public').hasTable(tableName);
-  if (exists) {
-    console.log(`Table exists. Dropping table: ${tableName}`);
-    await knex.schema.withSchema('public').dropTableIfExists(tableName);
-    console.log(`Dropped table: ${tableName}`);
-  }
-  console.log(`Creating table: ${tableName}`);
-  await knex.schema.withSchema('public').createTable(tableName, table => {
-    table.increments('id');
-    table.uuid('guid').notNullable().unique();
-    table.uuid('customerGuid').notNullable();
-    table.integer('cent').notNullable();
-    table.integer('fraction').notNullable().defaultTo(1);
-    table.string('currency').notNullable();
-    table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
-    table.timestamp('updatedAt');
-  });
-  console.log(`Created table: ${tableName}`);
-}
+const createMessageTable = require('../migrations/create-message-table');
+const createCustomerTable = require('../migrations/create-customer-table');
+const createOrderTable = require('../migrations/create-customer-order-table');
 
 async function createTables(knex) {
+  console.info('Creating tables...');
   await createMessageTable(knex);
   await createCustomerTable(knex);
   await createOrderTable(knex);
+  console.info('Created tables.');
 }
 
-async function run(cmdOptions) {
-  const databaseConfiguration = {
-    host: cmdOptions['-h'] ?? dbConfig.host,
-    port: cmdOptions['-p'] ?? dbConfig.port,
-    database: cmdOptions['-d'] ?? dbConfig.database,
-    user: cmdOptions['-U'] ?? dbConfig.user,
-    password: cmdOptions['-P'] ?? dbConfig.password
-  };
-  const knex = knexSetup({
-    client: 'pg',
-    connection: {
-      ...databaseConfiguration
-    }
-  });
-
+async function run(knex) {
   try {
-    console.info('CREATING TABLES...');
     await createTables(knex);
   } catch (error) {
     console.error('CATCH_BLOCK - CREATE-TABLES - run', error.message);
   }
-  await knex.destroy();
-  console.log('Done!');
 }
 
 module.exports = run;

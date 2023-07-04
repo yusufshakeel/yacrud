@@ -44,40 +44,41 @@ Usage: yacrud command [-option=value]
   Commands:
   =========================================
   version               Print the version.
-  init                  This will create the default database, tables and fill the tables.
+  init                  This will create/recreate the default database, tables and fill the tables.
   create-database       Create default database 'yacrud'.
   create-tables         Create default tables.
   fill-tables           Fill the tables with fake values.
   
   Initialise:
-  ->  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  ➜  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud init
+  ➜  yacrud init
   
   Create database:
-  ->  yacrud create-database [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  ➜  yacrud create-database [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud create-database
+  ➜  yacrud create-database
   
   Create tables:
-  ->  yacrud create-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  ➜  yacrud create-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud create-tables
+  ➜  yacrud create-tables
   
   Fill tables:
-  ->  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
+  ➜  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
   Example:
-  ->  yacrud fill-tables
+  ➜  yacrud fill-tables
 ```
 
 #### Default values
-| Flag  | Default Value | Note          |
-|-------|---------------|---------------|
-| -d    | yacrud        | Database name |
-| -h    | localhost     | Hostname      |
-| -p    | 5432          | Port          |
-| -U    |               | Username      |
-| -P    |               | Password      |
+| Flag | Default Value | Note            |
+|------|---------------|-----------------|
+| -d   | yacrud        | Database name   |
+| -h   | localhost     | Hostname        |
+| -p   | 5432          | Port            |
+| -U   |               | Username        |
+| -P   |               | Password        |
+| -C   | pg            | Database Client |
 
 
 ## License

@@ -1,68 +1,104 @@
 'use strict';
-const packageJson = require('../../package.json');
+const dbConfig = require('../configs/db-config');
+const knexSetup = require('../setups/knex-setup');
 const createDatabase = require('./create-database');
+const recreateDatabase = require('./recreate-database');
+const dropDatabase = require('./drop-database');
 const createTables = require('./create-tables');
 const fillTables = require('./fill-tables');
+const options = require('./options');
+const version = require('./version');
+const commandOptionParserHelper = require('../helpers/command-option-parser-helper');
 
-const options = () => {
-  return `Usage: yacrud command [-option=value]
-  
-  Commands:
-  =========================================
-  version               Print the version.
-  init                  This will create the default database, tables and fill the tables.
-  create-database       Create default database 'yacrud'.
-  create-tables         Create default tables.
-  fill-tables           Fill the tables with fake values.
-  
-  Initialise:
-  ➜  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud init
-  
-  Create database:
-  ➜  yacrud create-database -h=Host -p=PORT [-U=Username] [-P=Password]
-  Example:
-  ➜  yacrud create-database
-  
-  Create tables:
-  ➜  yacrud create-tables -h=Host -p=PORT [-U=Username] [-P=Password]
-  Example:
-  ➜  yacrud create-tables
-  
-  Fill tables:
-  ➜  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud fill-tables
-  `;
-};
+async function recreateDbCmd({ databaseConfiguration }) {
+  await recreateDatabase(
+    knexSetup({
+      client: 'pg',
+      connection: {
+        ...databaseConfiguration,
+        database: 'postgres'
+      }
+    }),
+    databaseConfiguration
+  );
+}
 
-const cmdOptionsParser = cmdOptions => {
-  return cmdOptions.reduce((result, current) => {
-    const [option, value] = current.split('=');
-    return { ...result, [option]: value };
-  }, {});
-};
+async function dropDbCmd({ databaseConfiguration }) {
+  await dropDatabase(
+    knexSetup({
+      client: 'pg',
+      connection: {
+        ...databaseConfiguration,
+        database: 'postgres'
+      }
+    }),
+    databaseConfiguration
+  );
+}
+
+async function createDbCmd({ databaseConfiguration }) {
+  await createDatabase(
+    knexSetup({
+      client: 'pg',
+      connection: {
+        ...databaseConfiguration,
+        database: 'postgres'
+      }
+    }),
+    databaseConfiguration
+  );
+}
+
+async function initCmd(knex, databaseConfiguration) {
+  await recreateDbCmd({ databaseConfiguration });
+  await createTables(knex);
+  await fillTables(knex);
+}
 
 module.exports = async function commands() {
   const argv = process.argv.slice(2);
   const [command, ...cmdOptions] = argv;
 
-  if (command === 'init') {
-    await createDatabase(cmdOptionsParser(cmdOptions));
-    await createTables(cmdOptionsParser(cmdOptions));
-    await fillTables(cmdOptionsParser(cmdOptions));
-  } else if (command === 'version') {
-    console.log(
-      `${packageJson.name} - version ${packageJson.version}\n${packageJson.description}\n${packageJson.homepage}`
-    );
-  } else if (command === 'create-database') {
-    await createDatabase(cmdOptionsParser(cmdOptions));
-  } else if (command === 'create-tables') {
-    await createTables(cmdOptionsParser(cmdOptions));
-  } else if (command === 'fill-tables') {
-    await fillTables(cmdOptionsParser(cmdOptions));
-  } else {
-    console.log(options());
+  if (!argv.length || argv[0] === '--help' || argv[1] === '--help') {
+    const params = argv.length > 1 ? { command: argv[0] } : undefined;
+    options(params);
+    return;
   }
+
+  const parsedCmdOptions = commandOptionParserHelper(cmdOptions);
+
+  const databaseConfiguration = {
+    host: parsedCmdOptions['-h'] ?? dbConfig.host,
+    port: parsedCmdOptions['-p'] ?? dbConfig.port,
+    database: parsedCmdOptions['-d'] ?? dbConfig.database,
+    user: parsedCmdOptions['-U'] ?? dbConfig.user,
+    password: parsedCmdOptions['-P'] ?? dbConfig.password
+  };
+  const knex = knexSetup({
+    client: 'pg',
+    connection: {
+      ...databaseConfiguration
+    }
+  });
+
+  const commandHandlerConfig = {
+    init: ({ knex, databaseConfiguration }) => initCmd(knex, databaseConfiguration),
+    version: () => version(),
+    'create-database': ({ databaseConfiguration }) => createDbCmd({ databaseConfiguration }),
+    'recreate-database': ({ databaseConfiguration }) => recreateDbCmd({ databaseConfiguration }),
+    'drop-database': ({ databaseConfiguration }) => dropDbCmd({ databaseConfiguration }),
+    'create-tables': ({ knex }) => createTables(knex),
+    'fill-tables': ({ knex }) => fillTables(knex)
+  };
+  try {
+    const cmdHandler = commandHandlerConfig[command];
+    if (cmdHandler) {
+      await cmdHandler({ knex, databaseConfiguration });
+    } else {
+      console.log(`\nCommand not Found\n\nTry\n➜  yacrud --help\n`);
+    }
+  } catch (e) {
+    console.log('Error', e.message);
+  }
+  await knex.destroy();
 };
