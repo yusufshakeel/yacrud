@@ -2,7 +2,7 @@
 Yet Another Create Read Update and Delete project.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.6.0-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.6.1-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 ## Use case
@@ -21,9 +21,9 @@ We can use this to create a test database and some tables and then fill them wit
 
 * Node (v14 or higher)
 * NPM (v6 or higher)
-* Database (any of the following)
+* Database (any of the following supported database)
   * PostgreSQL (v11 or higher)
-  * MySQL (v7 or higher)
+  * MySQL (v5 or higher)
   * MariaDB (v9 or higher)
 * DBeaver (Optional)
 
