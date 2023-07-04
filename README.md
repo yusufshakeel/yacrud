@@ -2,7 +2,7 @@
 Yet Another Create Read Update and Delete project.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.4.0-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.5.0-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 ## Use case
@@ -46,7 +46,7 @@ Usage: yacrud command --help
 Commands:
 =========================================
 version               Print the version.
-init                  This will create/recreate the default database, default tables and fill it with fake values.
+init                  [Re]create the default database, tables and fill it with fake values.
 create-database       Create the default database 'yacrud'.
 recreate-database     Recreate the default database 'yacrud'.
 drop-database         Drop the default database 'yacrud'.

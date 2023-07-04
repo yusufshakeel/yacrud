@@ -8,7 +8,7 @@ const commandOptions = `
   Commands:
   =========================================
   version               Print the version.
-  init                  This will create/recreate the default database, default tables and fill it with fake values.
+  init                  [Re]create the default database, tables and fill it with fake values.
   create-database       Create the default database 'yacrud'.
   recreate-database     Recreate the default database 'yacrud'.
   drop-database         Drop the default database 'yacrud'.
@@ -27,7 +27,7 @@ const initCmd = `Initialise:
 Example:
 ➜  yacrud init
 
-This will create/recreate the default database, default tables and fill it with fake values.
+[Re]create the default database, tables and fill it with fake values.
 
 Name of the default database is yacrud.
 
