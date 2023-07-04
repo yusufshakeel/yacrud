@@ -15,7 +15,7 @@ module.exports = async function createOrderTable(knex) {
     table.integer('cent').notNullable();
     table.integer('fraction').notNullable().defaultTo(1);
     table.string('currency').notNullable();
-    table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now()).index();
     table.timestamp('updatedAt');
   });
   console.log(`Created table: ${tableName}`);
