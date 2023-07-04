@@ -2,7 +2,7 @@
 Yet Another Create Read Update and Delete project.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.3.0-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.4.0-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 ## Use case
@@ -39,35 +39,19 @@ npm i -g yacrud
 ## Commands
 
 ```shell
+Usage: yacrud --help
 Usage: yacrud command [-option=value]
-  
-  Commands:
-  =========================================
-  version               Print the version.
-  init                  This will create/recreate the default database, tables and fill the tables.
-  create-database       Create default database 'yacrud'.
-  create-tables         Create default tables.
-  fill-tables           Fill the tables with fake values.
-  
-  Initialise:
-  ➜  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud init
-  
-  Create database:
-  ➜  yacrud create-database [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud create-database
-  
-  Create tables:
-  ➜  yacrud create-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud create-tables
-  
-  Fill tables:
-  ➜  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName]
-  Example:
-  ➜  yacrud fill-tables
+Usage: yacrud command --help
+
+Commands:
+=========================================
+version               Print the version.
+init                  This will create/recreate the default database, default tables and fill it with fake values.
+create-database       Create the default database 'yacrud'.
+recreate-database     Recreate the default database 'yacrud'.
+drop-database         Drop the default database 'yacrud'.
+create-tables         Create the default tables.
+fill-tables           Fill the default tables with fake values.
 ```
 
 #### Default values
@@ -78,7 +62,6 @@ Usage: yacrud command [-option=value]
 | -p   | 5432          | Port            |
 | -U   |               | Username        |
 | -P   |               | Password        |
-| -C   | pg            | Database Client |
 
 
 ## License
