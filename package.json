@@ -31,7 +31,7 @@
   "bugs": {
     "url": "https://github.com/yusufshakeel/yacrud/issues"
   },
-  "homepage": "https://github.com/yusufshakeel/yacrud#readme",
+  "homepage": "https://github.com/yusufshakeel/yacrud",
   "engines": {
     "node": ">14.0.0"
   },
