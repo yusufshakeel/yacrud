@@ -8,7 +8,11 @@ const password = process.env.DATABASE_PASSWORD || '';
 const client = process.env.DATABASE_CLIENT || 'pg';
 const defaultDatabaseMap = {
   pg: 'postgres',
-  mysql2: 'mysql'
+  mysql: 'mysql'
+};
+const defaultClientMap = {
+  pg: 'pg',
+  mysql: 'mysql2'
 };
 
 module.exports = {
@@ -18,5 +22,6 @@ module.exports = {
   user,
   password,
   client,
-  defaultDatabaseMap
+  defaultDatabaseMap,
+  defaultClientMap
 };
