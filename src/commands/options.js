@@ -132,7 +132,7 @@ offset=0
 The 'filter' flag will filter based on column name and value.
 
 Example:
-➜  yacrud read -table=message -filter=guid:'28a16df2-07e0-432a-807d-ec58e3791e7d'
+➜  yacrud read -table=message -filter=guid:28a16df2-07e0-432a-807d-ec58e3791e7d
 
 Pass the -d option if a different database is being used.
 `;
