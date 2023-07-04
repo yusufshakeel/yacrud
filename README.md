@@ -42,7 +42,7 @@ npm i -g yacrud
 
 ## Commands
 
-```shell
+```
   Usage: yacrud --help
   Usage: yacrud command [-option=value]
   Usage: yacrud command --help
