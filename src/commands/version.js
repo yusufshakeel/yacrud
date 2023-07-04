@@ -2,6 +2,6 @@
 const packageJson = require('../../package.json');
 module.exports = function version() {
   console.log(
-    `${packageJson.name} - version ${packageJson.version}\n${packageJson.description}\n${packageJson.homepage}`
+    `${packageJson.name} - ${packageJson.description}\nversion ${packageJson.version}\n${packageJson.homepage}`
   );
 };
