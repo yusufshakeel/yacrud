@@ -2,11 +2,13 @@
 
 const messageTable = require('../migrations/data/message-table');
 const customerTables = require('../migrations/data/customer-tables');
+const stockTradeTable = require('../migrations/data/stock-trade-table');
 
 async function fillTables(knex, databaseConfiguration) {
   console.info('Filling tables...');
   await messageTable.insertRows(knex, databaseConfiguration);
   await customerTables.insertRows(knex, databaseConfiguration);
+  await stockTradeTable.insertRows(knex, databaseConfiguration);
   console.info('Filled tables.');
 }
 

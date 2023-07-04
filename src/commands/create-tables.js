@@ -2,13 +2,15 @@
 
 const createMessageTable = require('../migrations/tables/create-message-table');
 const createCustomerTable = require('../migrations/tables/create-customer-table');
-const createOrderTable = require('../migrations/tables/create-customer-order-table');
+const createCustomerOrderTable = require('../migrations/tables/create-customer-order-table');
+const createStockTradeTable = require('../migrations/tables/create-stock-trade-table');
 
 async function createTables(knex) {
   console.info('Creating tables...');
   await createMessageTable(knex);
   await createCustomerTable(knex);
-  await createOrderTable(knex);
+  await createCustomerOrderTable(knex);
+  await createStockTradeTable(knex);
   console.info('Created tables.');
 }
 
