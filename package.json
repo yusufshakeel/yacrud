@@ -24,7 +24,9 @@
     "javascript",
     "nodejs",
     "database",
-    "postgresql"
+    "postgresql",
+    "mysql",
+    "mariadb"
   ],
   "author": "Yusuf Shakeel",
   "license": "MIT",
