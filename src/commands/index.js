@@ -77,7 +77,8 @@ module.exports = async function commands(argv) {
       password: parsedCmdOptions['-P'] ?? dbConfig.password
     },
     client: dbConfig.defaultClientMap[dbClient] ?? 'pg',
-    defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres'
+    defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres',
+    selectedDatabase: dbClient
   };
   const knex = knexSetup({
     client: databaseConfiguration.client,

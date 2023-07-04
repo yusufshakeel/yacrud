@@ -1,0 +1,25 @@
+{
+  "testEnvironment": "node",
+  "verbose": true,
+  "bail": true,
+  "testRegex": "(unit).test.js$",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!**/coverage/**",
+    "!**/docs/**",
+    "!**/node_modules/**",
+    "!**/test/**",
+    "!src/index.js",
+    "!src/setups/**",
+    "!src/configs/**"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "statements": 100,
+      "branches": 100,
+      "functions": 100,
+      "lines": 100
+    }
+  }
+}
