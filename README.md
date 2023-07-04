@@ -2,7 +2,7 @@
 Yet Another Create Read Update and Delete project.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.6.1-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.6.2-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 ## Use case
@@ -29,7 +29,7 @@ We can use this to create a test database and some tables and then fill them wit
 
 #### Localhost
 
-Start the PostgreSQL server and then use `yacrud`.
+Start the database server and then use `yacrud`.
 
 ## Getting started
 
@@ -70,12 +70,12 @@ fill-tables           Fill the default tables with fake values.
 Values for `-C` flag.
 ```
 pg          PostgreSQL
-mysql2      MySQL/MariaDB
+mysql       MySQL/MariaDB
 ```
 
 Example:
 ```shell
-yacrud init -C=mysql2 -p=3306 -U=yusufshakeel -P=root1234
+➜  yacrud init -C=mysql2 -h=localhost -p=3306 -d=yacrud -U=yusufshakeel -P=root1234
 ```
 
 ## License
