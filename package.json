@@ -1,6 +1,6 @@
 {
   "name": "yacrud",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "Yet Another Create Read Update and Delete project.",
   "main": "src/index.js",
   "bin": {
