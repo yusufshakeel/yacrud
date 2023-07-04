@@ -26,7 +26,7 @@ We can use this to create a test database and some tables and then fill them wit
 
 #### Localhost
 
-Start the PostgreSQL server and then using `yacrud`.
+Start the PostgreSQL server and then use `yacrud`.
 
 ## Getting started
 
