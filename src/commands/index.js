@@ -55,20 +55,20 @@ async function initCmd(knex, databaseConfiguration) {
   await fillTables(knex, databaseConfiguration);
 }
 
-// eslint-disable-next-line complexity
-module.exports = async function commands(argv) {
-  const [command, ...cmdOptions] = argv;
+const commandHandlerConfig = ({ knex, databaseConfiguration }) => ({
+  init: () => initCmd(knex, databaseConfiguration),
+  version: () => version(),
+  'create-database': () => createDbCmd({ databaseConfiguration }),
+  'recreate-database': () => recreateDbCmd({ databaseConfiguration }),
+  'drop-database': () => dropDbCmd({ databaseConfiguration }),
+  'create-tables': () => createTables(knex),
+  'fill-tables': () => fillTables(knex, databaseConfiguration)
+});
 
-  if (!argv.length || argv[0] === '--help' || argv[1] === '--help') {
-    const params = argv.length > 1 ? { command: argv[0] } : undefined;
-    options(params);
-    return;
-  }
-
+const getDbConfig = cmdOptions => {
   const parsedCmdOptions = commandOptionParserHelper(cmdOptions);
-
   const dbClient = parsedCmdOptions['-C'] ?? dbConfig.client;
-  const databaseConfiguration = {
+  return {
     connection: {
       host: parsedCmdOptions['-h'] ?? dbConfig.host,
       port: parsedCmdOptions['-p'] ?? dbConfig.port,
@@ -80,31 +80,38 @@ module.exports = async function commands(argv) {
     defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres',
     selectedDatabase: dbClient
   };
-  const knex = knexSetup({
-    client: databaseConfiguration.client,
-    connection: {
-      ...databaseConfiguration.connection
-    }
-  });
+};
 
-  const commandHandlerConfig = {
-    init: ({ knex, databaseConfiguration }) => initCmd(knex, databaseConfiguration),
-    version: () => version(),
-    'create-database': ({ databaseConfiguration }) => createDbCmd({ databaseConfiguration }),
-    'recreate-database': ({ databaseConfiguration }) => recreateDbCmd({ databaseConfiguration }),
-    'drop-database': ({ databaseConfiguration }) => dropDbCmd({ databaseConfiguration }),
-    'create-tables': ({ knex }) => createTables(knex),
-    'fill-tables': ({ knex, databaseConfiguration }) => fillTables(knex, databaseConfiguration)
-  };
+module.exports = async function commands(argv) {
   try {
-    const cmdHandler = commandHandlerConfig[command];
-    if (cmdHandler) {
-      await cmdHandler({ knex, databaseConfiguration });
-    } else {
-      console.log(`\nCommand not Found\n\nTry\n➜  yacrud --help\n`);
+    const [command, ...cmdOptions] = argv;
+
+    if (!argv.length || argv[0] === '--help' || argv[1] === '--help') {
+      const params = argv.length > 1 ? { command: argv[0] } : undefined;
+      options(params);
+      return;
     }
+
+    const databaseConfiguration = getDbConfig(cmdOptions);
+    const knex = knexSetup({
+      client: databaseConfiguration.client,
+      connection: {
+        ...databaseConfiguration.connection
+      }
+    });
+
+    try {
+      const cmdHandler = commandHandlerConfig({ knex, databaseConfiguration })[command];
+      if (cmdHandler) {
+        await cmdHandler();
+      } else {
+        console.log(`\nCommand not Found\n\nTry\n➜  yacrud --help\n`);
+      }
+    } catch (e) {
+      console.log('Error', e.message);
+    }
+    await knex.destroy();
   } catch (e) {
     console.log('Error', e.message);
   }
-  await knex.destroy();
 };
