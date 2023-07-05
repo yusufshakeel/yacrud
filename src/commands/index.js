@@ -11,6 +11,11 @@ const read = require('./read');
 const options = require('./options');
 const version = require('./version');
 const commandOptionParserHelper = require('../helpers/command-option-parser-helper');
+const {
+  DATABASE_DEFAULT_TABLES,
+  DATABASE_DEFAULT_READ_CONDITIONS,
+  DATABASE_DEFAULT_WRITE_CONDITIONS
+} = require('../constants');
 
 async function recreateDbCmd({ databaseConfiguration }) {
   await recreateDatabase(
@@ -78,14 +83,15 @@ const getConnectionOptions = parsedCmdOptions => ({
 });
 
 const getReadConditionOptions = parsedCmdOptions => ({
-  table: parsedCmdOptions['-table'] ?? 'message',
-  limit: parsedCmdOptions['-limit'] ?? 5,
-  offset: parsedCmdOptions['-offset'] ?? 0,
-  filter: parsedCmdOptions['-filter'] ?? 0
+  table: parsedCmdOptions['-table'] ?? DATABASE_DEFAULT_TABLES.MESSAGE,
+  limit: parsedCmdOptions['-limit'] ?? DATABASE_DEFAULT_READ_CONDITIONS.LIMIT,
+  offset: parsedCmdOptions['-offset'] ?? DATABASE_DEFAULT_READ_CONDITIONS.OFFSET,
+  filter: parsedCmdOptions['-filter'] ?? DATABASE_DEFAULT_READ_CONDITIONS.FILTER
 });
 
 const getWriteConditionOptions = parsedCmdOptions => ({
-  numberOfRows: parsedCmdOptions['-numberOfRows'] ?? 10000
+  numberOfRows:
+    parsedCmdOptions['-numberOfRows'] ?? DATABASE_DEFAULT_WRITE_CONDITIONS.NUMBER_OF_ROWS_TO_CREATE
 });
 
 const getDbConfig = cmdOptions => {

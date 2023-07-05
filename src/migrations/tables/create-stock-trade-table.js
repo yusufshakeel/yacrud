@@ -1,7 +1,8 @@
 'use strict';
+const { DATABASE_DEFAULT_TABLES } = require('../../constants');
 
 module.exports = async function createStockTradeTable(knex) {
-  const tableName = 'stockTrade';
+  const tableName = DATABASE_DEFAULT_TABLES.STOCK_TRADE;
   const exists = await knex.schema.hasTable(tableName);
   if (exists) {
     console.log(`Table exists. Dropping table: ${tableName}`);

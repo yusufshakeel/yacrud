@@ -1,8 +1,9 @@
 'use strict';
+const { DATABASE_DEFAULT_TABLES } = require('../../../constants');
 
 module.exports = function MySqlClient(knex) {
   this.insert = async rows => {
-    const tableName = 'customer';
+    const tableName = DATABASE_DEFAULT_TABLES.CUSTOMER;
     const dataToInsert = rows.map(row => {
       const { guid, password, firstName, lastName, accountStatus, createdAt, updatedAt, email } =
         row;
