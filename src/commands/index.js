@@ -84,6 +84,10 @@ const getReadConditionOptions = parsedCmdOptions => ({
   filter: parsedCmdOptions['-filter'] ?? 0
 });
 
+const getWriteConditionOptions = parsedCmdOptions => ({
+  numberOfRows: parsedCmdOptions['-numberOfRows'] ?? 10000
+});
+
 const getDbConfig = cmdOptions => {
   const parsedCmdOptions = commandOptionParserHelper(cmdOptions);
   const dbClient = parsedCmdOptions['-C'] ?? dbConfig.client;
@@ -92,7 +96,8 @@ const getDbConfig = cmdOptions => {
     client: dbConfig.defaultClientMap[dbClient] ?? 'pg',
     defaultDatabase: dbConfig.defaultDatabaseMap[dbClient] ?? 'postgres',
     selectedDatabase: dbClient,
-    readCondition: getReadConditionOptions(parsedCmdOptions)
+    readCondition: getReadConditionOptions(parsedCmdOptions),
+    writeCondition: getWriteConditionOptions(parsedCmdOptions)
   };
 };
 

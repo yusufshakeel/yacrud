@@ -8,8 +8,13 @@ const CustomerOrderClient = require('./customer-order-table/client');
 const insertRows = async (knex, databaseConfiguration) => {
   const customerClient = CustomerClient(knex, databaseConfiguration);
   const customerOrderClient = CustomerOrderClient(knex, databaseConfiguration);
-  const customerSeed = CustomerTableSeed();
-  const customerOrderSeed = CustomerOrderTableSeed(customerSeed.customerGuids);
+  const customerSeed = CustomerTableSeed({
+    numberOfRows: databaseConfiguration.writeCondition.numberOfRows
+  });
+  const customerOrderSeed = CustomerOrderTableSeed({
+    numberOfRows: databaseConfiguration.writeCondition.numberOfRows,
+    customerGuids: customerSeed.customerGuids
+  });
 
   await customerClient.insert(customerSeed.rows);
   await customerOrderClient.insert(customerOrderSeed.rows, customerSeed.customerGuids);

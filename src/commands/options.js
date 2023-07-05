@@ -46,11 +46,14 @@ This will print the version.
 `;
 
 const initCmd = `Initialise:
-➜  yacrud init [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+➜  yacrud init [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
 ➜  yacrud init
 
 [Re]create the default database, tables and fill it with fake values.
+
+Default:
+numberOfRows=10000   Total number of rows to create in the tables.
 
 Name of the default database is yacrud.
 
@@ -98,11 +101,14 @@ Pass the -d option if a different database is being used.
 `;
 
 const fillTablesCmd = `Fill tables:
-➜  yacrud fill-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+➜  yacrud fill-tables [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
 ➜  yacrud fill-tables
 
 Fill the default tables with fake values inside default database 'yacrud'.
+
+Default:
+numberOfRows=10000   Total number of rows to create in the tables.
 
 Pass the -d option if a different database is being used.
 `;

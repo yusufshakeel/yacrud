@@ -3,10 +3,10 @@ const { v4: uuidV4 } = require('uuid');
 const { getfake } = require('getfake');
 const randomDateHelper = require('../../../helpers/random-date-helper');
 
-module.exports = function seed() {
+module.exports = function seed({ numberOfRows }) {
   const customerGuids = [];
   const rows = [];
-  for (let i = 1; i <= 10000; i++) {
+  for (let i = 1; i <= numberOfRows; i++) {
     const guid = uuidV4();
     const password = getfake.hash.md.md5();
     const firstName = getfake.name.english.firstName();
