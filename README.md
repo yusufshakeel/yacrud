@@ -58,6 +58,7 @@ npm i -g yacrud
   recreate-database     Recreate the default database 'yacrud'.
   drop-database         Drop the default database 'yacrud'.
   create-tables         Create the default tables.
+  recreate-tables       Recreate the default tables.
   fill-tables           Fill the default tables with fake values.
   list-tables           List all the tables.
   read                  Read rows from a table.

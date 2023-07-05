@@ -101,6 +101,16 @@ Create default tables inside default database 'yacrud'.
 Pass the -d option if a different database is being used.
 `;
 
+const recreateTablesCmd = `Recreate tables:
+➜  yacrud recreate-tables [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+Example:
+➜  yacrud recreate-tables
+
+Recreate default tables inside default database 'yacrud'.
+
+Pass the -d option if a different database is being used.
+`;
+
 const fillTablesCmd = `Fill tables:
 ➜  yacrud fill-tables [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
@@ -151,6 +161,7 @@ const commandHelpMap = {
   ['recreate-database']: recreateDatabaseCmd,
   ['drop-database']: dropDatabaseCmd,
   ['create-tables']: createTablesCmd,
+  ['recreate-tables']: recreateTablesCmd,
   ['fill-tables']: fillTablesCmd,
   ['list-tables']: listTablesCmd,
   ['read']: readRowsATableCmd
