@@ -7,10 +7,10 @@ const createStockTradeTable = require('../migrations/tables/create-stock-trade-t
 
 async function createTables(knex) {
   console.info('Creating tables...');
-  await createMessageTable(knex, false);
-  await createCustomerTable(knex, false);
-  await createCustomerOrderTable(knex, false);
-  await createStockTradeTable(knex, false);
+  await createMessageTable(knex);
+  await createCustomerTable(knex);
+  await createCustomerOrderTable(knex);
+  await createStockTradeTable(knex);
   console.info('Done!');
 }
 
@@ -18,7 +18,7 @@ async function run(knex) {
   try {
     await createTables(knex);
   } catch (error) {
-    console.error('CATCH_BLOCK - CREATE-TABLES - run', error.message);
+    console.error('CATCH_BLOCK - RECREATE-TABLES - run', error.message);
   }
 }
 

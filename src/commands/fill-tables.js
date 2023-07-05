@@ -9,7 +9,7 @@ async function fillTables(knex, databaseConfiguration) {
   await messageTable.insertRows(knex, databaseConfiguration);
   await customerTables.insertRows(knex, databaseConfiguration);
   await stockTradeTable.insertRows(knex, databaseConfiguration);
-  console.info('Filled tables.');
+  console.info('Done!');
 }
 
 async function run(knex, databaseConfiguration) {

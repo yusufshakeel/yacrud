@@ -5,6 +5,7 @@ const createDatabase = require('./create-database');
 const recreateDatabase = require('./recreate-database');
 const dropDatabase = require('./drop-database');
 const createTables = require('./create-tables');
+const recreateTables = require('./recreate-tables');
 const fillTables = require('./fill-tables');
 const listTables = require('./list-tables');
 const read = require('./read');
@@ -58,7 +59,7 @@ async function createDbCmd({ databaseConfiguration }) {
 
 async function initCmd(knex, databaseConfiguration) {
   await recreateDbCmd({ databaseConfiguration });
-  await createTables(knex);
+  await recreateTables(knex);
   await fillTables(knex, databaseConfiguration);
 }
 
@@ -69,6 +70,7 @@ const commandHandlerConfig = ({ knex, databaseConfiguration }) => ({
   'recreate-database': () => recreateDbCmd({ databaseConfiguration }),
   'drop-database': () => dropDbCmd({ databaseConfiguration }),
   'create-tables': () => createTables(knex),
+  'recreate-tables': () => recreateTables(knex),
   'fill-tables': () => fillTables(knex, databaseConfiguration),
   'list-tables': () => listTables(knex, databaseConfiguration),
   read: () => read(knex, databaseConfiguration)
