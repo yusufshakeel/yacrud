@@ -12,8 +12,9 @@ module.exports = function seed({ numberOfRows }) {
     const firstName = getfake.name.english.firstName();
     const lastName = getfake.name.english.lastName();
     const accountStatus = ['ACTIVE', 'INACTIVE', 'SUSPENDED'][getfake.number.integer(0, 2)];
-    const createdAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
-    const updatedAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
+    const dateTime = randomDateHelper();
+    const createdAt = dateTime.startDate;
+    const updatedAt = dateTime.endDate;
     const email = `${firstName.toLowerCase()}.${getfake.hash.md.md5().substring(0, 8)}@example.com`;
 
     rows.push({ guid, password, firstName, lastName, accountStatus, createdAt, updatedAt, email });

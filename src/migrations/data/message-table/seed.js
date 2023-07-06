@@ -9,8 +9,9 @@ module.exports = function seed({ numberOfRows }) {
     const guid = uuidV4();
     const message = getfake.phrase.any();
     const status = ['PUBLISHED', 'DRAFT', 'DELETED'][getfake.number.integer(0, 2)];
-    const createdAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
-    const updatedAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
+    const dateTime = randomDateHelper();
+    const createdAt = dateTime.startDate;
+    const updatedAt = dateTime.endDate;
     rows.push({ guid, message, status, createdAt, updatedAt });
   }
   return rows;

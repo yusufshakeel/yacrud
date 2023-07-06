@@ -12,8 +12,9 @@ module.exports = function seed({ numberOfRows, customerGuids }) {
     const fraction = 100;
     const currency = 'INR';
     const orderStatus = ['CANCELLED', 'RETURNED', 'DELIVERED'][getfake.number.integer(0, 2)];
-    const createdAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
-    const updatedAt = randomDateHelper().YYYY_MM_DD__HH_MM_SS;
+    const dateTime = randomDateHelper();
+    const createdAt = dateTime.startDate;
+    const updatedAt = dateTime.endDate;
 
     rows.push({
       guid,
