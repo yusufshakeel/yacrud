@@ -59,7 +59,7 @@ async function createDbCmd({ databaseConfiguration }) {
 
 async function initCmd(knex, databaseConfiguration) {
   await recreateDbCmd({ databaseConfiguration });
-  await recreateTables(knex);
+  await createTables(knex);
   await fillTables(knex, databaseConfiguration);
 }
 
