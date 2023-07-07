@@ -12,7 +12,9 @@
     "!**/test/**",
     "!src/index.js",
     "!src/setups/**",
-    "!src/configs/**"
+    "!src/configs/**",
+    "!src/migrations/data/**",
+    "!src/migrations/tables/**"
   ],
   "coverageThreshold": {
     "global": {
