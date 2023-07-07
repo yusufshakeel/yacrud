@@ -79,7 +79,7 @@ const commandHandlerConfig = ({ knex, databaseConfiguration }) => ({
 const getConnectionOptions = parsedCmdOptions => ({
   host: parsedCmdOptions['-h'] ?? dbConfig.host,
   port: parsedCmdOptions['-p'] ?? dbConfig.port,
-  database: parsedCmdOptions['-d'] ?? dbConfig.database,
+  database: (parsedCmdOptions['-d'] ?? dbConfig.database).toLowerCase(),
   user: parsedCmdOptions['-U'] ?? dbConfig.user,
   password: parsedCmdOptions['-P'] ?? dbConfig.password
 });

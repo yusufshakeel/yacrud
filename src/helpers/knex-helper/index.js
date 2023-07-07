@@ -28,7 +28,7 @@ function knexHelperProxy(Client = DbClient) {
       await knex.raw(`DROP DATABASE ${databaseConfiguration.connection.database}`);
       console.info(`Dropped database: ${databaseConfiguration.connection.database}`);
     } else {
-      console.info(`Database does not exists.`);
+      console.info(`Database does not exists: ${databaseConfiguration.connection.database}`);
     }
   }
 

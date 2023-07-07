@@ -1,6 +1,10 @@
 'use strict';
 
 const commandOptions = `
+  Getting started:
+  Start your database server and then run the following command.
+  ➜  yacrud init
+  
   Usage: yacrud --help
   Usage: yacrud command [-option=value]
   Usage: yacrud command --help
@@ -31,6 +35,9 @@ const commandOptions = `
   | -P   |               | Password      |
   | -C   | pg            | Client name   |
   +------+---------------+---------------+
+  
+  The database name (-d flag) is always converted to lowercase.
+  
   Values for -C flag.
   pg          PostgreSQL
   mysql       MySQL/MariaDB
