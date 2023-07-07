@@ -121,7 +121,7 @@ const getConfigFile = () => {
   try {
     const fileExists = fs.existsSync(YACRUD_CONFIG_FILE_PATH);
     if (!fileExists) {
-      console.info('[INFO] .yacrudrc file is not yet set.');
+      console.info('[INFO] .yacrudrc file is not yet set. Run "yacrud init" command to configure.');
       return;
     }
 
