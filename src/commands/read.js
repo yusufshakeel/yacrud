@@ -4,7 +4,7 @@ const knexHelper = require('../databases/knex')();
 async function read(knex, databaseConfiguration) {
   console.info('Reading table...');
   await knexHelper.read(knex, databaseConfiguration);
-  console.info('Read table.');
+  console.info('Done!');
 }
 
 async function run(knex, databaseConfiguration) {
