@@ -1,10 +1,6 @@
 'use strict';
 
 const commandOptions = `
-  Getting started:
-  Start your database server and then run the following command.
-  ➜  yacrud init
-  
   Usage: yacrud --help
   Usage: yacrud command [-option=value]
   Usage: yacrud command --help
@@ -15,7 +11,8 @@ const commandOptions = `
   Commands:
   =========================================
   version               Print the version.
-  init                  [Re]create the default database, tables and fill it with fake values.
+  init                  Initialise yacrud.
+  all                   [Re]create the default database, tables and fill it with fake values.
   create-database       Create the default database 'yacrud'.
   recreate-database     Recreate the default database 'yacrud'.
   drop-database         Drop the default database 'yacrud'.
@@ -24,6 +21,18 @@ const commandOptions = `
   fill-tables           Fill the default tables with fake values.
   list-tables           List all the tables.
   read                  Read rows from a table.
+  
+  Configuration file:
+  =========================================
+  Run the following command to setup configuration file.
+  ➜  yacrud init
+  
+  The init command creates the .yacrudrc file in the home directory.
+  
+  Database flags:
+  =========================================
+  Following are the flags that can be used with the above commands.
+  Note! Inline database flags overrides the .yacrudrc flags.
   
   +------+---------------+---------------+
   | Flag | Default Value | Note          |
@@ -53,10 +62,10 @@ const versionCmd = `Version:
 This will print the version.
 `;
 
-const initCmd = `Initialise:
-➜  yacrud init [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
+const allCmd = `All:
+➜  yacrud all [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
-➜  yacrud init
+➜  yacrud all
 
 [Re]create the default database, tables and fill it with fake values.
 
@@ -163,7 +172,7 @@ Pass the -d option if a different database is being used.
 
 const commandHelpMap = {
   version: versionCmd,
-  init: initCmd,
+  all: allCmd,
   ['create-database']: createDatabaseCmd,
   ['recreate-database']: recreateDatabaseCmd,
   ['drop-database']: dropDatabaseCmd,

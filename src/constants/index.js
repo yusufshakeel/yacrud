@@ -1,6 +1,21 @@
 'use strict';
+const homeDirectory = require('os').homedir();
+const configFilePath = `${homeDirectory}/.yacrudrc`;
 
 module.exports = {
+  YACRUD_CONFIG_FILE_PATH: configFilePath,
+  INITIALISE_DEFAULT_VALUES: {
+    DATABASE_TYPES: {
+      1: { name: 'PostgreSQL', client: 'pg' },
+      2: { name: 'MySQL', client: 'mysql' },
+      3: { name: 'MariaDB', client: 'mysql' }
+    },
+    DATABASE_NAME: 'yacrud',
+    PORT: '5432',
+    HOST: 'localhost',
+    USERNAME: '',
+    PASSWORD: ''
+  },
   DATABASE_DEFAULT_TABLES: {
     CUSTOMER: 'customer',
     CUSTOMER_ORDER: 'customerOrder',

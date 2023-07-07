@@ -2,7 +2,7 @@
 Yet Another Create Read Update and Delete project.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.12.0-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.13.0-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 > ```shell
@@ -47,10 +47,6 @@ npm i -g yacrud
 ## Commands
 
 ```
-  Getting started:
-  Start your database server and then run the following command.
-  ➜  yacrud init
-  
   Usage: yacrud --help
   Usage: yacrud command [-option=value]
   Usage: yacrud command --help
@@ -61,7 +57,8 @@ npm i -g yacrud
   Commands:
   =========================================
   version               Print the version.
-  init                  [Re]create the default database, tables and fill it with fake values.
+  init                  Initialise yacrud.
+  all                   [Re]create the default database, tables and fill it with fake values.
   create-database       Create the default database 'yacrud'.
   recreate-database     Recreate the default database 'yacrud'.
   drop-database         Drop the default database 'yacrud'.
@@ -70,6 +67,18 @@ npm i -g yacrud
   fill-tables           Fill the default tables with fake values.
   list-tables           List all the tables.
   read                  Read rows from a table.
+  
+  Configuration file:
+  =========================================
+  Run the following command to setup configuration file.
+  ➜  yacrud init
+  
+  The init command creates the .yacrudrc file in the home directory.
+  
+  Database flags:
+  =========================================
+  Following are the flags that can be used with the above commands.
+  Note! Inline database flags overrides the .yacrudrc flags.
   
   +------+---------------+---------------+
   | Flag | Default Value | Note          |
