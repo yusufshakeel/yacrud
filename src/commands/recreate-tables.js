@@ -1,6 +1,6 @@
 'use strict';
 const { DATABASE_DEFAULT_TABLES } = require('../constants');
-const knexHelper = require('../helpers/knex-helper')();
+const knexHelper = require('../databases/knex')();
 const createMessageTable = require('../migrations/tables/create-message-table');
 const createCustomerTable = require('../migrations/tables/create-customer-table');
 const createCustomerOrderTable = require('../migrations/tables/create-customer-order-table');

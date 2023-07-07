@@ -1,5 +1,5 @@
 'use strict';
-const knexHelper = require('../helpers/knex-helper')();
+const knexHelper = require('../databases/knex')();
 
 async function read(knex, databaseConfiguration) {
   console.info('Reading table...');

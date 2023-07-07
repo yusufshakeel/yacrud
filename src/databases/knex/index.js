@@ -1,7 +1,7 @@
 'use strict';
 const DbClient = require('./client');
 
-function knexHelperProxy(Client = DbClient) {
+function KnexHelper(Client = DbClient) {
   async function terminateAllConnections(knex, databaseConfiguration) {
     const client = Client(knex, databaseConfiguration);
     await client.terminateAllConnections();
@@ -67,4 +67,4 @@ function knexHelperProxy(Client = DbClient) {
   };
 }
 
-module.exports = knexHelperProxy;
+module.exports = KnexHelper;

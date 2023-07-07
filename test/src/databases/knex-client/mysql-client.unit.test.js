@@ -1,6 +1,6 @@
 'use strict';
 
-const MySqlClient = require('../../../../src/helpers/knex-helper/mysql-client');
+const MySqlClient = require('../../../../src/databases/knex/mysql-client');
 
 describe('Testing MySqlClient', () => {
   const knexWithoutDatabase = {

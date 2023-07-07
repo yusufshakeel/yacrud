@@ -1,6 +1,6 @@
 'use strict';
 
-const PgClient = require('../../../../src/helpers/knex-helper/pg-client');
+const PgClient = require('../../../../src/databases/knex/pg-client');
 
 describe('Testing PgClient', () => {
   const knexWithoutDatabase = {
