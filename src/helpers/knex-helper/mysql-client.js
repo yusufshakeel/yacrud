@@ -5,7 +5,7 @@ module.exports = function MySqlClient(knex, databaseConfiguration) {
     const isPresent = await knex.raw(
       `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${databaseConfiguration.connection.database}'`
     );
-    return isPresent?.[0]?.[0]?.SCHEMA_NAME === databaseConfiguration.connection.database;
+    return isPresent?.[0]?.[0]?.SCHEMA_NAME;
   };
 
   this.terminateAllConnections = async () => {
@@ -25,8 +25,8 @@ module.exports = function MySqlClient(knex, databaseConfiguration) {
     const result = await knex.raw(
       `SELECT table_name FROM information_schema.tables where table_schema='${databaseConfiguration.connection.database}'`
     );
-    const rows = result?.[0] ?? [];
-    console.log(rows.map(v => v.TABLE_NAME));
+    const rows = result?.[0];
+    console.log(rows?.map(v => v.TABLE_NAME));
   };
 
   this.read = async readCondition => {
@@ -35,12 +35,12 @@ module.exports = function MySqlClient(knex, databaseConfiguration) {
       console.info(`Database does not exists: ${databaseConfiguration.connection.database}`);
       return;
     }
-    const { table, filter, limit = 5, offset = 0 } = readCondition;
+    const { table, filter, limit, offset } = readCondition;
     const [columnName, columnValue] = filter ? filter.split(':') : [];
     const whereClause = columnName && columnValue ? `WHERE ${columnName}='${columnValue}'` : '';
     const result = await knex.raw(
       `SELECT * FROM ${table} ${whereClause} LIMIT ${limit} OFFSET ${offset}`
     );
-    console.log(result?.[0] ?? []);
+    console.log(result?.[0]);
   };
 };
