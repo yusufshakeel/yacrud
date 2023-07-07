@@ -119,10 +119,16 @@ const getDbConfig = (cmdOptions, configFileContent) => {
 
 const getConfigFile = () => {
   try {
+    const fileExists = fs.existsSync(YACRUD_CONFIG_FILE_PATH);
+    if (!fileExists) {
+      console.info('[INFO] .yacrudrc file is not yet set.');
+      return;
+    }
+
     const fileContent = fs.readFileSync(YACRUD_CONFIG_FILE_PATH, 'utf8');
     return JSON.parse(fileContent);
   } catch (e) {
-    // do nothing.
+    console.log(`ERROR. Failed to read ${YACRUD_CONFIG_FILE_PATH} file:`, e.message);
   }
 };
 
