@@ -34,7 +34,7 @@ async function run(knex) {
   try {
     await createTables(knex);
   } catch (error) {
-    console.error('CATCH_BLOCK - CREATE-TABLES - run', error.message);
+    console.error('ERROR. create-tables:', error.message);
   }
 }
 

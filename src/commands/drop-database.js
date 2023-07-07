@@ -7,7 +7,7 @@ async function run(knex, databaseConfiguration) {
     await terminateAllConnections(knex, databaseConfiguration);
     await dropDatabase(knex, databaseConfiguration);
   } catch (error) {
-    console.error('CATCH_BLOCK - DROP-DATABASE - run', error.message);
+    console.error('ERROR. drop-database:', error.message);
   }
   await knex.destroy();
 }

@@ -11,7 +11,7 @@ async function run(knex, databaseConfiguration) {
   try {
     await read(knex, databaseConfiguration);
   } catch (error) {
-    console.error('CATCH_BLOCK - LIST-TABLES - run', error.message);
+    console.error('ERROR. read:', error.message);
   }
 }
 

@@ -26,7 +26,7 @@ async function run(knex) {
   try {
     await recreateTables(knex);
   } catch (error) {
-    console.error('CATCH_BLOCK - RECREATE-TABLES - run', error.message);
+    console.error('ERROR. recreate-tables:', error.message);
   }
 }
 

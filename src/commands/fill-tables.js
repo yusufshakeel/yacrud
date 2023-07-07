@@ -16,7 +16,7 @@ async function run(knex, databaseConfiguration) {
   try {
     await fillTables(knex, databaseConfiguration);
   } catch (error) {
-    console.error('CATCH_BLOCK - FILL-TABLES - run', error.message);
+    console.error('ERROR. fill-tables:', error.message);
   }
 }
 

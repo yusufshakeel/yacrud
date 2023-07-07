@@ -2,20 +2,17 @@
 
 module.exports = function MySqlClient(knex, databaseConfiguration) {
   this.isDatabasePresent = async () => {
-    const isPresent = await knex.raw(`SELECT SCHEMA_NAME
-      FROM INFORMATION_SCHEMA.SCHEMATA
-      WHERE SCHEMA_NAME = '${databaseConfiguration.connection.database}'
-    `);
+    const isPresent = await knex.raw(
+      `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '${databaseConfiguration.connection.database}'`
+    );
     return isPresent?.[0]?.[0]?.SCHEMA_NAME === databaseConfiguration.connection.database;
   };
 
   this.terminateAllConnections = async () => {
     console.info('Terminating all database connections');
-    await knex.raw(`SELECT CONCAT('KILL ', id, ';') 
-      FROM INFORMATION_SCHEMA.PROCESSLIST 
-      WHERE \`User\` = '${databaseConfiguration.connection.user}'
-      AND \`Host\` = '${databaseConfiguration.connection.host}'
-      AND \`db\` = '${databaseConfiguration.connection.database}';`);
+    await knex.raw(
+      `SELECT CONCAT('KILL ', id, ';') FROM INFORMATION_SCHEMA.PROCESSLIST WHERE \`User\` = '${databaseConfiguration.connection.user}' AND \`Host\` = '${databaseConfiguration.connection.host}' AND \`db\` = '${databaseConfiguration.connection.database}';`
+    );
     console.info('Terminated all database connections.');
   };
 
