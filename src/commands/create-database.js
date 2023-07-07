@@ -1,6 +1,6 @@
 'use strict';
 
-const { terminateAllConnections, createDatabase } = require('../helpers/knex-helper');
+const { terminateAllConnections, createDatabase } = require('../helpers/knex-helper')();
 
 async function run(knex, databaseConfiguration) {
   try {
