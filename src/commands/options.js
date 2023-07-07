@@ -62,6 +62,12 @@ const versionCmd = `Version:
 This will print the version.
 `;
 
+const initCmd = `Initialise:
+➜  yacrud init
+
+This will initialise the configuration file.
+`;
+
 const allCmd = `All:
 ➜  yacrud all [-numberOfRows=Number] [-h=Host] [-p=PORT] [-U=Username] [-P=Password] [-d=databaseName] [-C=clientName]
 Example:
@@ -173,6 +179,7 @@ Pass the -d option if a different database is being used.
 const commandHelpMap = {
   version: versionCmd,
   all: allCmd,
+  init: initCmd,
   ['create-database']: createDatabaseCmd,
   ['recreate-database']: recreateDatabaseCmd,
   ['drop-database']: dropDatabaseCmd,
