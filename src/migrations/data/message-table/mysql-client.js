@@ -8,12 +8,10 @@ module.exports = function MySqlClient(knex) {
       const { guid, message, status, createdAt, updatedAt } = row;
       return `("${guid}","${message}","${status}","${createdAt}","${updatedAt}")`;
     });
-    console.log(`Filling table: ${tableName}`);
     await knex.raw(
       `insert into ${tableName} (guid,message,status,createdAt,updatedAt) values ${dataToInsert.join(
         ','
       )}`
     );
-    console.log(`Filled table: ${tableName}`);
   };
 };
