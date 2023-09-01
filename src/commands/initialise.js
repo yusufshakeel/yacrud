@@ -50,8 +50,8 @@ async function run() {
 
     console.log(JSON.stringify(input, null, 2));
 
-    const isItOkay = await prompt('Is it okay? (yes) ');
-    if (isItOkay.toLowerCase() === 'no' || isItOkay.toLowerCase() === 'n') {
+    const isItOkay = await prompt('Is it okay? (y/n) ');
+    if (isItOkay.toLowerCase() === 'n') {
       console.log('Aborting...');
       return;
     }
