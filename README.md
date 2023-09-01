@@ -4,7 +4,7 @@ Yet Another Create Read Update and Delete project.
 Quickly run CRUD ops and more on databases like PostgreSQL and MySQL locally and in the Cloud.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.14.2-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.14.3-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 > ```shell
