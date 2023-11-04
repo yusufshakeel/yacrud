@@ -4,7 +4,7 @@ Yet Another Create Read Update and Delete project.
 Quickly run CRUD ops and more on databases like PostgreSQL and MySQL locally and in the Cloud.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yusufshakeel/yacrud)
-[![npm version](https://img.shields.io/badge/npm-0.14.3-blue.svg)](https://www.npmjs.com/package/yacrud)
+[![npm version](https://img.shields.io/badge/npm-0.14.4-blue.svg)](https://www.npmjs.com/package/yacrud)
 [![npm Downloads](https://img.shields.io/npm/dm/yacrud.svg)](https://www.npmjs.com/package/yacrud)
 
 > ```shell
@@ -19,9 +19,15 @@ We can use this to create a test database and some tables and then fill them wit
 
 ## Table of Contents
 
-* [Prerequisite](#prerequisite)
-* [Getting started](#getting-started)
-* [Commands](#commands)
+- [yacrud](#yacrud)
+  - [Use case](#use-case)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisite](#prerequisite)
+      - [Localhost](#localhost)
+  - [Getting started](#getting-started)
+  - [Commands](#commands)
+  - [License](#license)
+    - [Donate](#donate)
 
 ## Prerequisite
 
